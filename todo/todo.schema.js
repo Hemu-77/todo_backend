@@ -15,6 +15,10 @@ const todoSchema = new mongoose.Schema({
     default: false,
     enum : [true,false]
   },
+  taskTime : {
+     type: String,
+     required : true
+  },
   reminderTime: {
     type: String, // you can store "14:30" or "08:00 PM"
     required: true,

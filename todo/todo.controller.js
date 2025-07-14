@@ -6,9 +6,9 @@ export default class TodoController {
   }
 
   async createTodo(req, res, next) {
-    const { title, description, completed, reminderTime, date } = req.body;
+    const { title, description, completed,taskTime, reminderTime, date } = req.body;
     const userId = req.userID; // assumed to be set by auth middleware
-    console.log(userId);
+    // console.log(userId);
     
 
     if (!title || !reminderTime || !date) {
@@ -20,6 +20,7 @@ export default class TodoController {
         title,
         description,
         completed,
+        taskTime,
         reminderTime,
         date,
         userId

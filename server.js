@@ -8,8 +8,16 @@ import cron from "node-cron";
 import { sendReminderEmail } from './middleware/nodemailer.js';
 import { TodoModel } from './todo/todo.schema.js';
 import { UserModel } from './user/user.schema.js';
+import cors from 'cors'
 
 const server = express();
+
+server.use(
+  cors({
+    origin: ["http://localhost:3001", "https://your-frontend.vercel.app"], 
+    credentials: true,
+  })
+);
 
 server.use(express.json()); // for JSON payloads
 server.use(express.urlencoded({ extended: true })); // for form data
@@ -45,7 +53,7 @@ cron.schedule("* * * * *", async () => {
 server.use('/api/users', userRouter)
 server.use('/api/todo',jwtAuth,todoRouter)
 
-server.listen(3500, ()=>{
+server.listen(3000, ()=>{
     console.log('Server is up and running at port 3500');
     connectDB()
 })
